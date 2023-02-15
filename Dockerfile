@@ -47,54 +47,6 @@ RUN mkdir -p /tmp/jni
 COPY /jni/Android.mk /tmp/jni
 COPY /jni/Application.mk /tmp/jni
 
-# iPerf 2.0.5
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q -O iperf-2.0.5.tar.gz https://iperf.fr/download/source/iperf-2.0.5-source.tar.gz && \
-    tar -zxvf iperf-2.0.5.tar.gz && \
-    rm -f iperf-2.0.5.tar.gz
-
-COPY /iperf-2.0.5/Android.mk /tmp/iperf-2.0.5
-RUN cd /tmp/iperf-2.0.5 && \
-    autoconf && \
-    ./configure
-
-# iPerf 2.0.10
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://astuteinternet.dl.sourceforge.net/project/iperf2/iperf-2.0.10.tar.gz && \
-    tar -zxvf iperf-2.0.10.tar.gz && \
-    rm -f iperf-2.0.10.tar.gz
-
-COPY /iperf-2.0.10/Android.mk /tmp/iperf-2.0.10
-RUN cd /tmp/iperf-2.0.10 && \
-    autoconf && \
-    ./configure
-
-# iPerf 2.0.11
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://astuteinternet.dl.sourceforge.net/project/iperf2/iperf-2.0.11.tar.gz && \
-    tar -zxvf iperf-2.0.11.tar.gz && \
-    rm -f iperf-2.0.11.tar.gz
-
-COPY /iperf-2.0.11/* /tmp/iperf-2.0.11/
-RUN cd /tmp/iperf-2.0.11 && \
-    autoconf && \
-    ./configure
-
-# iPerf 2.0.12
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://astuteinternet.dl.sourceforge.net/project/iperf2/iperf-2.0.12.tar.gz && \
-    tar -zxvf iperf-2.0.12.tar.gz && \
-    rm -f iperf-2.0.12.tar.gz
-
-COPY /iperf-2.0.12/* /tmp/iperf-2.0.12/
-RUN cd /tmp/iperf-2.0.12 && \
-    autoconf && \
-    ./configure
-
 # iPerf 2.0.13
 
 RUN cd /tmp && \
@@ -105,197 +57,19 @@ RUN cd /tmp && \
 COPY /iperf-2.0.13/* /tmp/iperf-2.0.13/
 RUN cd /tmp/iperf-2.0.13 && \
     autoconf && \
-    ./configure
+    ./configure CFLAGS="-static" CXXFLAGS="-static"
 
-# iPerf 2.1.3
+# iPerf 2.1.8
 
 RUN cd /tmp && \
-    wget --no-check-certificate -q https://nav.dl.sourceforge.net/project/iperf2/iperf-2.1.3.tar.gz && \
-    tar -zxvf iperf-2.1.3.tar.gz && \
-    rm -f iperf-2.1.3.tar.gz
+    wget --no-check-certificate -q https://nav.dl.sourceforge.net/project/iperf2/iperf-2.1.8.tar.gz && \
+    tar -zxvf iperf-2.1.8.tar.gz && \
+    rm -f iperf-2.1.8.tar.gz
 
-COPY /iperf-2.1.3/* /tmp/iperf-2.1.3/
-RUN cd /tmp/iperf-2.1.3 && \
+COPY /iperf-2.1.8/* /tmp/iperf-2.1.8/
+RUN cd /tmp/iperf-2.1.8 && \
     autoconf && \
-    ./configure
-
-# iPerf 2.1.4
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://nav.dl.sourceforge.net/project/iperf2/iperf-2.1.4.tar.gz && \
-    tar -zxvf iperf-2.1.4.tar.gz && \
-    rm -f iperf-2.1.4.tar.gz
-
-COPY /iperf-2.1.4/* /tmp/iperf-2.1.4/
-RUN cd /tmp/iperf-2.1.4 && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.1.6
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.1.6.tar.gz && \
-    tar -zxvf iperf-3.1.6.tar.gz && \
-    rm -f iperf-3.1.6.tar.gz
-
-COPY /iperf-3.1.6/Android.mk /tmp/iperf-3.1.6
-RUN cd /tmp/iperf-3.1.6 && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.1.7
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.1.7.tar.gz && \
-    tar -zxvf iperf-3.1.7.tar.gz && \
-    rm -f iperf-3.1.7.tar.gz
-
-COPY /iperf-3.1.7/Android.mk /tmp/iperf-3.1.7
-RUN cd /tmp/iperf-3.1.7 && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.2
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.2.tar.gz && \
-    tar -zxvf iperf-3.2.tar.gz && \
-    rm -f iperf-3.2.tar.gz
-
-COPY /iperf-3.2/* /tmp/iperf-3.2/
-RUN cd /tmp/iperf-3.2 && \
-    ./fix.sh && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.2rc1
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.2rc1.tar.gz && \
-    tar -zxvf iperf-3.2rc1.tar.gz && \
-    rm -f iperf-3.2rc1.tar.gz
-
-COPY /iperf-3.2rc1/* /tmp/iperf-3.2rc1/
-RUN cd /tmp/iperf-3.2rc1 && \
-    ./fix.sh && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.3
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.3.tar.gz && \
-    tar -zxvf iperf-3.3.tar.gz && \
-    rm -f iperf-3.3.tar.gz
-
-COPY /iperf-3.3/* /tmp/iperf-3.3/
-RUN cd /tmp/iperf-3.3 && \
-    ./fix.sh && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.4
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.4.tar.gz && \
-    tar -zxvf iperf-3.4.tar.gz && \
-    rm -f iperf-3.4.tar.gz
-
-COPY /iperf-3.4/* /tmp/iperf-3.4/
-RUN cd /tmp/iperf-3.4 && \
-    ./fix.sh && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.5
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.5.tar.gz && \
-    tar -zxvf iperf-3.5.tar.gz && \
-    rm -f iperf-3.5.tar.gz
-
-COPY /iperf-3.5/* /tmp/iperf-3.5/
-RUN cd /tmp/iperf-3.5 && \
-    ./fix.sh && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.6
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.6.tar.gz && \
-    tar -zxvf iperf-3.6.tar.gz && \
-    rm -f iperf-3.6.tar.gz
-
-COPY /iperf-3.6/* /tmp/iperf-3.6/
-RUN cd /tmp/iperf-3.6 && \
-    ./fix.sh && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.7
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.7.tar.gz && \
-    tar -zxvf iperf-3.7.tar.gz && \
-    rm -f iperf-3.7.tar.gz
-
-COPY /iperf-3.7/* /tmp/iperf-3.7/
-RUN cd /tmp/iperf-3.7 && \
-    ./fix.sh && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.8
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.8.tar.gz && \
-    tar -zxvf iperf-3.8.tar.gz && \
-    rm -f iperf-3.8.tar.gz
-
-COPY /iperf-3.8/* /tmp/iperf-3.8/
-RUN cd /tmp/iperf-3.8 && \
-    ./fix.sh && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.8.1
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.8.1.tar.gz && \
-    tar -zxvf iperf-3.8.1.tar.gz && \
-    rm -f iperf-3.8.1.tar.gz
-
-COPY /iperf-3.8.1/* /tmp/iperf-3.8.1/
-RUN cd /tmp/iperf-3.8.1 && \
-    ./fix.sh && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.9
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.9.tar.gz && \
-    tar -zxvf iperf-3.9.tar.gz && \
-    rm -f iperf-3.9.tar.gz
-
-COPY /iperf-3.9/* /tmp/iperf-3.9/
-RUN cd /tmp/iperf-3.9 && \
-    ./fix.sh && \
-    autoconf && \
-    ./configure
-
-# iPerf 3.10
-
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.10.tar.gz && \
-    tar -zxvf iperf-3.10.tar.gz && \
-    rm -f iperf-3.10.tar.gz
-
-COPY /iperf-3.10/* /tmp/iperf-3.10/
-RUN cd /tmp/iperf-3.10 && \
-    ./fix.sh && \
-    ./configure
+    ./configure CFLAGS="-static" CXXFLAGS="-static"
 
 # iPerf 3.10.1
 
@@ -307,7 +81,19 @@ RUN cd /tmp && \
 COPY /iperf-3.10.1/* /tmp/iperf-3.10.1/
 RUN cd /tmp/iperf-3.10.1 && \
     ./fix.sh && \
-    ./configure
+    ./configure CFLAGS="-static" CXXFLAGS="-static" LDFLAGS="-static" --enable-static --disable-shared --enable-static-bin
+
+# iPerf 3.12
+
+RUN cd /tmp && \
+    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.12.tar.gz && \
+    tar -zxvf iperf-3.12.tar.gz && \
+    rm -f iperf-3.12.tar.gz
+
+COPY /iperf-3.12/* /tmp/iperf-3.12/
+RUN cd /tmp/iperf-3.12 && \
+    ./fix.sh && \
+    ./configure CFLAGS="-static" CXXFLAGS="-static" LDFLAGS="-static" --enable-static --disable-shared --enable-static-bin
 
 # Compile
 

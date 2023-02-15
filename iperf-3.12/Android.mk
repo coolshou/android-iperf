@@ -1,6 +1,6 @@
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
-LOCAL_MODULE := iperf3.2rc1
+LOCAL_MODULE := iperf3.12
 LOCAL_MODULE_TAGS := dev
 LOCAL_CFLAGS := -DHAVE_CONFIG_H -UAF_INET6 -w -Wno-error=format-security
 LOCAL_LDFLAGS := -fPIE -pie
@@ -16,12 +16,12 @@ LOCAL_SRC_FILES := \
 		src/iperf_sctp.c \
 		src/iperf_server_api.c \
 		src/iperf_tcp.c \
+		src/iperf_time.c \
 		src/iperf_udp.c \
 		src/iperf_util.c \
 		src/main.c \
 		src/net.c \
 		src/tcp_info.c \
-		src/tcp_window_size.c \
 		src/timer.c \
 		src/units.c \
 
