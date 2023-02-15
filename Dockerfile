@@ -3,7 +3,7 @@ LABEL maintainer="threeheadedknight@protonmail.com"
 
 RUN apt-get -y update -qq && \
     apt-get -y upgrade -qq && \
-    apt-get -y install -qq make bash git unzip wget curl openjdk-8-jdk build-essential autoconf nano tree && \
+    apt-get -y install -qq make bash git unzip wget curl openjdk-8-jdk build-essential autoconf nano tree file && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -49,39 +49,51 @@ COPY /jni/Application.mk /tmp/jni
 
 # iPerf 2.0.13
 
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://astuteinternet.dl.sourceforge.net/project/iperf2/iperf-2.0.13.tar.gz && \
-    tar -zxvf iperf-2.0.13.tar.gz && \
-    rm -f iperf-2.0.13.tar.gz
+# RUN cd /tmp && \
+#     wget --no-check-certificate -q https://astuteinternet.dl.sourceforge.net/project/iperf2/iperf-2.0.13.tar.gz && \
+#     tar -zxvf iperf-2.0.13.tar.gz && \
+#     rm -f iperf-2.0.13.tar.gz
 
-COPY /iperf-2.0.13/* /tmp/iperf-2.0.13/
-RUN cd /tmp/iperf-2.0.13 && \
-    autoconf && \
-    ./configure CFLAGS="-static" CXXFLAGS="-static"
+# COPY /iperf-2.0.13/* /tmp/iperf-2.0.13/
+# RUN cd /tmp/iperf-2.0.13 && \
+#     autoconf && \
+#     ./configure CFLAGS="-static" CXXFLAGS="-static"
 
 # iPerf 2.1.8
 
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://nav.dl.sourceforge.net/project/iperf2/iperf-2.1.8.tar.gz && \
-    tar -zxvf iperf-2.1.8.tar.gz && \
-    rm -f iperf-2.1.8.tar.gz
+# RUN cd /tmp && \
+#     wget --no-check-certificate -q https://nav.dl.sourceforge.net/project/iperf2/iperf-2.1.8.tar.gz && \
+#     tar -zxvf iperf-2.1.8.tar.gz && \
+#     rm -f iperf-2.1.8.tar.gz
 
-COPY /iperf-2.1.8/* /tmp/iperf-2.1.8/
-RUN cd /tmp/iperf-2.1.8 && \
-    autoconf && \
-    ./configure CFLAGS="-static" CXXFLAGS="-static"
+# COPY /iperf-2.1.8/* /tmp/iperf-2.1.8/
+# RUN cd /tmp/iperf-2.1.8 && \
+#     autoconf && \
+#     ./configure CFLAGS="-static" CXXFLAGS="-static"
 
 # iPerf 3.10.1
 
-RUN cd /tmp && \
-    wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.10.1.tar.gz && \
-    tar -zxvf iperf-3.10.1.tar.gz && \
-    rm -f iperf-3.10.1.tar.gz
+# RUN cd /tmp && \
+#     wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.10.1.tar.gz && \
+#     tar -zxvf iperf-3.10.1.tar.gz && \
+#     rm -f iperf-3.10.1.tar.gz
 
-COPY /iperf-3.10.1/* /tmp/iperf-3.10.1/
-RUN cd /tmp/iperf-3.10.1 && \
-    ./fix.sh && \
-    ./configure CFLAGS="-static" CXXFLAGS="-static" LDFLAGS="-static" --enable-static --disable-shared --enable-static-bin
+# COPY /iperf-3.10.1/* /tmp/iperf-3.10.1/
+# RUN cd /tmp/iperf-3.10.1 && \
+#     ./fix.sh && \
+#     ./configure CFLAGS="-static" CXXFLAGS="-static" LDFLAGS="-static" --enable-static --disable-shared --enable-static-bin
+
+# iPerf 3.11
+
+# RUN cd /tmp && \
+#     wget --no-check-certificate -q https://downloads.es.net/pub/iperf/iperf-3.11.tar.gz && \
+#     tar -zxvf iperf-3.11.tar.gz && \
+#     rm -f iperf-3.11.tar.gz
+
+# COPY /iperf-3.11/* /tmp/iperf-3.11/
+# RUN cd /tmp/iperf-3.11 && \
+#     ./fix.sh && \
+#     ./configure CFLAGS="-static" CXXFLAGS="-static" LDFLAGS="-static" --enable-static --disable-shared --enable-static-bin
 
 # iPerf 3.12
 
@@ -93,7 +105,7 @@ RUN cd /tmp && \
 COPY /iperf-3.12/* /tmp/iperf-3.12/
 RUN cd /tmp/iperf-3.12 && \
     ./fix.sh && \
-    ./configure CFLAGS="-static" CXXFLAGS="-static" LDFLAGS="-static" --enable-static --disable-shared --enable-static-bin
+    ./configure
 
 # Compile
 
